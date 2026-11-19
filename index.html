@@ -154,6 +154,59 @@ footer{text-align:center;padding:25px;color:#888}
 <footer>© 2026 BobLernt.de 🚀</footer>
 
 <script>
+<script>
+let subject = "Allgemein";
+
+function add(message, type) {
+  const box = document.getElementById("messages");
+  const div = document.createElement("div");
+  div.className = "msg " + type;
+  div.textContent = message;
+  box.appendChild(div);
+  box.scrollTop = box.scrollHeight;
+}
+
+function choose(s) {
+  subject = s;
+  add("Ich möchte " + s + " lernen!", "user");
+  add("Super! Was möchtest du über " + s + " wissen?", "bot");
+}
+
+function respond(q) {
+  q = q.toLowerCase();
+
+  if (q.includes("hauptstadt"))
+    return "Berlin ist die Hauptstadt von Deutschland!";
+
+  if (q.includes("7") && q.includes("8"))
+    return "7 mal 8 ist 56!";
+
+  if (q.includes("hallo"))
+    return "Hallo! Schön, dass du da bist!";
+
+  if (q.includes("prozent"))
+    return "Prozent bedeutet Hundertstel. 50 Prozent sind die Hälfte.";
+
+  return "Gute Frage! Lass uns gemeinsam " + subject + " lernen!";
+}
+
+document.getElementById("chat").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const input = document.getElementById("question");
+  const q = input.value.trim();
+
+  if (!q) return;
+
+  add(q, "user");
+  input.value = "";
+  add(respond(q), "bot");
+});
+
+</script>
+</body>
+</html>
+
 
 let subject="Allgemein";
 
