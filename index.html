@@ -83,3 +83,84 @@ footer{text-align:center;padding:25px;color:#888}
 <p>Gemeinsam lernen. Gemeinsam schlauer werden.</p>
 
 <p>🤖 Dein persönlicher Lernassistent wartet auf dich!</p>
+</div>
+
+<section>
+
+<h2>📚 Wähle dein Schulfach</h2>
+
+<div class="subjects">
+
+<button class="subject" onclick="choose('Mathe')">➗ Mathe</button>
+
+<button class="subject" onclick="choose('Deutsch')">📖 Deutsch</button>
+
+<button class="subject" onclick="choose('Englisch')">🇬🇧 Englisch</button>
+
+<button class="subject" onclick="choose('Biologie')">🧬 Biologie</button>
+
+<button class="subject" onclick="choose('Geschichte')">🏛️ Geschichte</button>
+
+<button class="subject" onclick="choose('Physik')">⚡ Physik</button>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>🤖 Bob AI – Lernassistent</h2>
+
+<div id="messages">
+
+<div class="msg bot">Hallo! Ich bin Bob! 😊 Was möchtest du lernen?</div>
+
+</div>
+
+<form id="chat">
+
+<input id="question" placeholder="Frag Bob etwas..." required>
+
+<button class="primary">Senden ➤</button>
+
+</form>
+
+<p style="font-size:12px;color:#888">Kostenlose Demo mit vorbereiteten Antworten.</p>
+
+</section>
+
+<section>
+
+<h2>🧠 Bob-Quiz</h2>
+
+<p id="quizquestion">Wie viel ist 7 × 8?</p>
+
+<div id="answers">
+
+<button onclick="answer(48)">48</button>
+
+<button onclick="answer(56)">56</button>
+
+<button onclick="answer(64)">64</button>
+
+</div>
+
+<p id="feedback"></p>
+
+<button class="primary" onclick="nextQuiz()">Nächste Frage</button>
+
+</section>
+
+<footer>© 2026 BobLernt.de 🚀</footer>
+
+<script>
+
+let subject="Allgemein";
+
+function choose(s){
+
+subject=s;
+
+add("Ich möchte "+s+" lernen!","user");
+
+add("Super! 😊 Was möchtest du über "+s+" wissen?","bot");
