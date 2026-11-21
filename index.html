@@ -132,6 +132,7 @@ footer{text-align:center;padding:25px;color:#888}
 <section>
 
 <h2>🧠 Bob-Quiz</h2>
+  <p id="score">⭐ Punkte: 0</p>
 
 <p id="quizquestion">Wie viel ist 7 × 8?</p>
 
@@ -201,6 +202,85 @@ document.getElementById("chat").addEventListener("submit", function(e) {
   input.value = "";
   add(respond(q), "bot");
 });
+
+let quizPoints = 0;
+let quizIndex = 0;
+let quizAnswered = false;
+
+const quizQuestions = [
+  {
+    question: "Wie viel ist 7 × 8?",
+    answers: [48, 56, 64],
+    correct: 56
+  },
+  {
+    question: "Wie viel ist 9 × 3?",
+    answers: [27, 18, 36],
+    correct: 27
+  },
+  {
+    question: "Wie viel ist 12 + 15?",
+    answers: [25, 27, 30],
+    correct: 27
+  },
+  {
+    question: "Wie viel ist 50 - 18?",
+    answers: [32, 28, 38],
+    correct: 32
+  }
+];
+
+function answer(number) {
+  if (quizAnswered) return;
+
+  quizAnswered = true;
+
+  if (number === quizQuestions[quizIndex].correct) {
+    quizPoints++;
+    document.getElementById("feedback").textContent =
+      "🎉 Richtig! Du bekommst einen Punkt!";
+  } else {
+    document.getElementById("feedback").textContent =
+      "😊 Leider falsch. Versuch es weiter!";
+  }
+
+  document.getElementById("score").textContent =
+    "⭐ Punkte: " + quizPoints;
+}
+
+function nextQuiz() {
+  if (!quizAnswered) {
+    document.getElementById("feedback").textContent =
+      "Bitte beantworte erst die Frage!";
+    return;
+  }
+
+  quizIndex++;
+
+  if (quizIndex >= quizQuestions.length) {
+    document.getElementById("question").textContent =
+      "🎉 Quiz beendet!";
+    document.getElementById("answers").innerHTML = "";
+    document.getElementById("feedback").textContent =
+      "Du hast " + quizPoints + " von 4 Punkten erreicht!";
+    return;
+  }
+
+  quizAnswered = false;
+
+  const q = quizQuestions[quizIndex];
+
+  document.getElementById("question").textContent = q.question;
+  document.getElementById("feedback").textContent = "";
+  document.getElementById("answers").innerHTML = "";
+
+  q.answers.forEach(number => {
+    const button = document.createElement("button");
+    button.textContent = number;
+    button.onclick = () => answer(number);
+    document.getElementById("answers").appendChild(button);
+  });
+}
 
 </script>
 </body>
