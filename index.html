@@ -283,7 +283,7 @@ function nextQuiz() {
       "🎉 Quiz beendet!";
     document.getElementById("answers").innerHTML = "";
     document.getElementById("feedback").textContent =
-      "Du hast " + quizPoints + " von 4 Punkten erreicht!";
+      "Du hast " + quizPoints + " von " + quizQuestions.length + " Punkten erreicht!";
     return;
   }
 
